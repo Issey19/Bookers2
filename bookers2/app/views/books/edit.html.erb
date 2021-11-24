@@ -4,6 +4,10 @@
   <%= f.text_field :title %>
   <h4>Opinion</h4>
   <%= f.text_area :category %>
+
   <%= f.submit 'Update Book' %>
+  <%=link_to "Show", @book = Book.find(params[:id]) %>
+  |
+  <%=link_to "Back", books_path  %>
 
 <% end %>
