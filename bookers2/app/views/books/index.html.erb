@@ -1,10 +1,14 @@
-<% @books.each do |book| %>
-<div>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <p>Title：<%= book.title %></p>
-  <p>Opinion：<%= book.body %></p>
-  <%= link_to "Edit", edit_book_path(book) %>
-  <%= link_to "Destroy", book_path(book) %>
-</div>
+<!DOCTYPE html>
+<html>
 
-<% end %>
+              <% @books.each do |book| %>
+              <div>
+                <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                <p>Title：<%= book.title %></p>
+                <p>Opinion：<%= book.body %></p>
+                <%= link_to "Edit", edit_book_path(book) %>
+                <%= link_to "Destroy", book_path(book) %>
+              </div>
+
+              <% end %>
+</html>

@@ -1,3 +1,5 @@
+<html>
+<%= flash[:notice] %>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -11,24 +13,26 @@
                   <tr>
               <% if @user.id == current_user.id %>
               <th>introduction</th>
-              <th></th>
+              <th><%= @user.introduction %></th>
                 </tr>
               </table>
               <tr>
                 <% if @user.id == current_user.id %>
-                  <%= link_to "編集", edit_user_path(@user.id) >
-                  <#class="btn btn-outline-secondary btn-block fas fa-user-cog" %>
-                <% end %>
+                  <%= link_to "", edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block fas fa-user-cog" %>
+                  <% end %>
               <% end %>
 
         <div class="mt-3">
           <h2>New book</h2>
             <%= form_with model: @books, local:true do |f| %>
 
-                  <h4>Title</h4>
+                    <h6>Title</h6>
                     <%= f.text_field :title %>
-                    <h4>Opinion</h4>
+                  <br>
+                  <br>
+                    <h6>Opinion</h6>
                      <%= f.text_field :body %>
+                  <br>
                   <br>
                   <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
 
@@ -40,11 +44,11 @@
       <div class="col-md-8 offset-md-1">
             <h1>Books</h1>
               <table class="table table-hover table-inverse">
-                <thaed><tr><td><td>Title</td><td><td>Opinion</td></tr></thaed>
-                <tbody><% @book.each do |book| %>
+                <thaed><tr><td><td><h4>Title</h4></td><td><h4>Opinion</h4></td></tr></thaed>
+                <tbody><% @user.books.each do |book| %>
                 <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
                 <%= link_to @user.name  ,edit_user_path(@user) %></td>
-                <td><%= book.title %></td>
+                <td><%= link_to book.title, book_path(book) %></td>
                 <td><%= book.body %></td>
                 <% end %>
                 </tbody>
@@ -54,3 +58,4 @@
     </div>
   </div>
 </table>
+</html>

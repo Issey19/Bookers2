@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     user_path(resource)
+    if @user.save
+      flash[:notice] = 'Signed in successfully.'
+      redirect_to user_path(@user.id)
+    end
   end
 
   def configure_permitted_parameters
@@ -15,4 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def after_sign_out_path_for(resource)
+    user_path(resource)
+    if @user.save
+      flash[:notice] = 'Signed out successfully.'
+      redirect_to root_path
+    end
+  end
 end
